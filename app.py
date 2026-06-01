@@ -16,7 +16,13 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.tracers.langchain import wait_for_all_tracers
+import base64
 
+def img_to_base64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+img = img_to_base64("images/simple.png")
 
 # =========================
 # ENV
@@ -110,7 +116,7 @@ def main():
         rgba(255,240,245,0.3),
         rgba(255,228,236,0.4)
     ),
-    url("simple.png");
+     url("data:image/png;base64,{img}");
 
     background-size: cover;
     background-position: center;
@@ -126,7 +132,7 @@ def main():
 
     margin: 0;
     padding: 2rem;
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.3);
     backdrop-filter: blur(12px);
 
     border-radius: 25px;
