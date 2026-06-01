@@ -16,13 +16,6 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.tracers.langchain import wait_for_all_tracers
-import base64
-
-def img_to_base64(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-img = img_to_base64("images/simple.png")
 
 # =========================
 # ENV
@@ -116,8 +109,7 @@ def main():
         rgba(255,240,245,0.3),
         rgba(255,228,236,0.4)
     ),
-     url("data:image/png;base64,{img}");
-
+    url("https://media.istockphoto.com/id/1309377121/photo/minimal-cosmetics-skincare-white-packaging-mock-up-3d-illustration.jpg?s=612x612&w=0&k=20&c=QBx1Z8uHAB3Y1vEcw6zQI-COeu9sdJXyZMoIvo5V0SQ=");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -132,7 +124,7 @@ def main():
 
     margin: 0;
     padding: 2rem;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.01);
     backdrop-filter: blur(12px);
 
     border-radius: 25px;
@@ -149,14 +141,11 @@ h1 {
     font-weight: 700;
 }
 
-h3, h4 {
+h2,h3, h4 {
     color: #d81b60 !important;
 }
 
-h2 {
-    color: #ffffff !important;
-    font-weight: 70;
-}
+
 
 /* =========================
    Text
@@ -233,7 +222,7 @@ section[data-testid="stSidebar"] * {
    Chat Messages
 ========================= */
 .stChatMessage {
-    background: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.4);
     border-radius: 18px;
     padding: 12px;
 }
