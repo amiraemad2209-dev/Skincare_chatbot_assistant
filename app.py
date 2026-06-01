@@ -110,7 +110,7 @@ def main():
         rgba(255,240,245,0.3),
         rgba(255,228,236,0.4)
     ),
-    url("images\skincare_background.jpg");
+    url("simple.png");
 
     background-size: cover;
     background-position: center;
@@ -126,7 +126,7 @@ def main():
 
     margin: 0;
     padding: 2rem;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.6);
     backdrop-filter: blur(12px);
 
     border-radius: 25px;
@@ -162,8 +162,10 @@ p, label {
 /* =========================
    Sidebar
 ========================= */
+
 section[data-testid="stSidebar"] {
-    background: rgba(255,240,245,0.92);
+    background: rgba(0,0,0, 0.85); 
+    backdrop-filter: blur(12px);
 }
 
 section[data-testid="stSidebar"] * {
@@ -394,12 +396,25 @@ AI:
         st.session_state.input_text = ""
 
         st.subheader(f"- {user_question} : ")
-        st.write(response)
+
+
+        #---------------------------------------------------
+
+        st.session_state.last_response = response
+        st.session_state.last_question = user_question
+
+    # =========================
+    # DISPLAY LAST ANSWER
+    # =========================
+    if "last_response" in st.session_state:
+       
+       st.write(st.session_state.last_response)
+
        
         #st.subheader("Evaluation")
         #st.json(evaluate_response(response))
 
-        wait_for_all_tracers()
+    wait_for_all_tracers()
 
 
     # =========================
@@ -441,8 +456,12 @@ Respond in same language.
                     ingredient_prompt
                 )
 
-            st.markdown(ingredient_response)
+            st.session_state.last_ingredient = ingredient_response
+            st.session_state.last_ing_name = ingredient_name
 
+    if "last_ingredient" in st.session_state:
+         
+            st.write(st.session_state.last_ingredient)
 
     # =========================
     # CHAT HISTORY
